@@ -2,8 +2,8 @@ from kubiya_sdk.tools import Arg
 from .base import AWSCliTool
 from kubiya_sdk.tools.registry import tool_registry
 
-list_accounts = AWSCliTool(
-    name="list_accounts",
+list_sandboxes = AWSCliTool(
+    name="list_sandboxes",
     description="List sandbox accounts",
     content="aws organizations list-children --child-type ORGANIZATIONAL_UNIT --parent-id $SANDBOX_OU_ID",
     args=[],
@@ -12,8 +12,8 @@ list_accounts = AWSCliTool(
 
 create_account = AWSCliTool(
     name="create_account",
-    description="Create sandbox account",
-    content="aws organizations create-account --email mike.luedke+aardvark@sysdig.com --account-name sandbox-aardvark —tags Key=leased,Value=19700101",
+    description="Create AWS account to add to the pool of available sandboxes",
+    content="aws organizations create-account --email mike.luedke+sandbox-aardvark@sysdig.com --account-name sandbox-aardvark —-tags Key=leased,Value=19700101",
     args=[],
     mermaid_diagram=""
 )
@@ -28,6 +28,6 @@ check_account_status = AWSCliTool(
     mermaid_diagram=""
 )
 
-tool_registry.register(list_accounts)
+tool_registry.register(list_sandboxes)
 tool_registry.register(create_account)
 tool_registry.register(check_account_status)

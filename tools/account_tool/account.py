@@ -30,6 +30,27 @@ check_account_status = AWSCliTool(
     mermaid_diagram=""
 )
 
+get_org_root_id = AWSCliTool(
+    name="get_org_root_id",
+    description="Get the id of the org root",
+    content="aws organizations list-roots --query \"Roots[0].Id\"",
+    args=[],
+    mermaid_diagram=""
+)
+
+move_account_to_sandbox_ou = AWSCliTool(
+    name="move_account_to_sandbox_ou",
+    description="Move AWS account to the Sandbox OU",
+    content="aws organizations move-account --account-id $account_id --source-parent-id $root_id --destination-parent-id $SANDBOX_OU_ID",
+    args=[
+        Arg(name="account_id", description="Id of account to move from check account status step", required=True),
+        Arg(name="root_id", description="Id of org root", required=True)
+    ],
+    mermaid_diagram=""
+)
+
 tool_registry.register(list_sandboxes)
 tool_registry.register(create_account)
 tool_registry.register(check_account_status)
+tool_registry.register(get_org_root_id)
+tool_registry.register(move_account_to_sandbox_ou)

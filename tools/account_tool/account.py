@@ -52,9 +52,19 @@ move_account_to_sandbox_ou = AWSCliTool(
 tag_new_sandbox_account = AWSCliTool(
     name="tag_new_sandbox_account",
     description="Tag newly created sandbox account",
-    content="aws organizations tag-resource --resource-id $account_id --tags Key=lease,Value=19700101 Key=Owner,Value=$KUBIYA_USER_EMAIL",
+    content="aws organizations tag-resource --resource-id $account_id --tags Key=lease,Value=19700101 Key=owner,Value=$KUBIYA_USER_EMAIL",
     args=[
         Arg(name="account_id", description="Id of account to move from check account status step", required=True)
+    ],
+    mermaid_diagram=""
+)
+
+get_account_tags = AWSCliTool(
+    name="get_account_tags",
+    description="Get tags for the given account. Metadata for sandboxes is stored in tags",
+    content="aws organizations list-tags-for-resource --resource-id $account_id",
+    args=[
+        Arg(name="account_id", description="Id of AWS account to get tags from", required=True)
     ],
     mermaid_diagram=""
 )
@@ -65,3 +75,4 @@ tool_registry.register(check_account_status)
 tool_registry.register(get_org_root_id)
 tool_registry.register(move_account_to_sandbox_ou)
 tool_registry.register(tag_new_sandbox_account)
+tool_registry.register(get_account_tags)

@@ -10,5 +10,5 @@ COMMON_FILES = [
 # In a Kubiya managed teammate, this environment variable will be set automatically
 # If you're using this in a local environment, make sure to set it on your shell
 COMMON_ENV = [
-    "AWS_PROFILE"
+    "AWS_PROFILE","SANDBOX_OU_ID"
 ]

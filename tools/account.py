@@ -1,5 +1,5 @@
 from kubiya_sdk.tools import Arg
-from . import AWSCliTool
+from .base import AWSCliTool
 from kubiya_sdk.tools.registry import tool_registry
 
 list_accounts = AWSCliTool(

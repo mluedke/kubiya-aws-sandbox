@@ -7,7 +7,7 @@ list_accounts = AWSCliTool(
     description="List accounts",
     content="aws organizations list-accounts --child-type ORGANIZATIONAL-UNIT --parent-id $sandbox-ou",
     args=[
-        Arg(name="sandbox-ou", type="str", description="Id of OU containing sandbox accounts", reqquired=True),
+        Arg(name="sandbox-ou", type="str", description="Id of OU containing sandbox accounts", required=True),
     ],
     mermaid_diagram=""
 )

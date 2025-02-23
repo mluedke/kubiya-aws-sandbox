@@ -6,7 +6,7 @@
       "alias": null,
       "description": "List accounts",
       "type": "docker",
-      "content": "aws organizations list-accounts --child-type ORGANIZATIONAL-UNIT --parent-id $sandbox-ou",
+      "content": "aws organizations list-accounts --child-type ORGANIZATIONAL-UNIT --parent-id ou-4yit-ixuehhs9",
       "content_url": null,
       "args": [
         {

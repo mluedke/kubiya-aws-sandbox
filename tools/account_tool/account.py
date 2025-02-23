@@ -49,8 +49,19 @@ move_account_to_sandbox_ou = AWSCliTool(
     mermaid_diagram=""
 )
 
+tag_new_sandbox_account = AWSCliTool(
+    name="tag_new_sandbox_account",
+    description="Tag newly created sandbox account",
+    content="aws organizations tag-resource --resource-id $account_id --tags Key=lease,Value=19700101 Key=Owner,Value=$KUBIYA_USER_EMAIL",
+    args=[
+        Arg(name="account_id", description="Id of account to move from check account status step", required=True)
+    ],
+    mermaid_diagram=""
+)
+
 tool_registry.register(list_sandboxes)
 tool_registry.register(create_account)
 tool_registry.register(check_account_status)
 tool_registry.register(get_org_root_id)
 tool_registry.register(move_account_to_sandbox_ou)
+tool_registry.register(tag_new_sandbox_account)

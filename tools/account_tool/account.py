@@ -23,7 +23,7 @@ check_account_status = AWSCliTool(
     description="Check the creation status of an account",
     content="aws organizations describe-create-account-status --create-account-request-id $request_id",
     args=[
-        Arg(name="request_id", type="str", description="Id of request from create account step", required=True)
+        Arg(name="request_id", description="Id of request from create account step", required=True)
     ],
     mermaid_diagram=""
 )

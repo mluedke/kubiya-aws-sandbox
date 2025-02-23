@@ -13,8 +13,10 @@ list_sandboxes = AWSCliTool(
 create_account = AWSCliTool(
     name="create_account",
     description="Create AWS account to add to the pool of available sandboxes",
-    content="aws organizations create-account --email mike.luedke+sandbox-aardvark@sysdig.com --account-name sandbox-aardvark —-tags Key=leased,Value=19700101",
-    args=[],
+    content="aws organizations create-account --email mike.luedke+$account_name@sysdig.com --account-name $account_name",
+    args=[
+        Arg(name="account_name", description="Name of AWS account", required=True)
+    ],
     mermaid_diagram=""
 )
 

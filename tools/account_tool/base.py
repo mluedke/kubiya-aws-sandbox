@@ -15,6 +15,5 @@ class AWSCliTool(Tool):
             args=args,
             with_files=COMMON_FILES,
             env=COMMON_ENV,
-            long_running=long_running,
-            mermaid_diagram=""
+            long_running=long_running
         )

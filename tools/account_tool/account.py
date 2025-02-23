@@ -5,7 +5,7 @@ from kubiya_sdk.tools.registry import tool_registry
 list_sandboxes = AWSCliTool(
     name="list_sandboxes",
     description="List sandbox accounts",
-    content="aws organizations list-children --child-type ORGANIZATIONAL_UNIT --parent-id $SANDBOX_OU_ID",
+    content="aws organizations list-children --child-type ACCOUNT --parent-id $SANDBOX_OU_ID",
     args=[],
     mermaid_diagram=""
 )

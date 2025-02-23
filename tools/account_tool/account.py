@@ -9,3 +9,5 @@ list_accounts = AWSCliTool(
     args=[],
     mermaid_diagram=""
 )
+
+tool_registry.register(list_accounts)

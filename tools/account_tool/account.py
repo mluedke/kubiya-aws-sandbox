@@ -74,7 +74,7 @@ get_account_tags = AWSCliTool(
 set_account_budget = AWSCliTool(
     name="set_account_budget",
     description="Set budget for the given account.",
-    content="aws budgets create-budget --account-id {account_id} --budget '{json_data}'".format(
+    content="aws sts assume-role --role-arn arn:aws:iam::{account_id}:role/OrganizationAccountAccessRole --role-session-name {account_id} && aws budgets create-budget --account-id {account_id} --budget '{json_data}'".format(
         account_id="{account_id}",
         json_data=json.dumps({
             "BudgetName": "Daily-Spending-Limit",

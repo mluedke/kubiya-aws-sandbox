@@ -52,9 +52,10 @@ move_account_to_sandbox_ou = AWSCliTool(
 tag_new_sandbox_account = AWSCliTool(
     name="tag_new_sandbox_account",
     description="Tag newly created sandbox account",
-    content="aws organizations tag-resource --resource-id $account_id --tags Key=lease,Value=19700101 Key=owner,Value=$KUBIYA_USER_EMAIL",
+    content="aws organizations tag-resource --resource-id $account_id --tags Key=lease-expires,Value=1970-01-01T00:00:00Z Key=owner,Value=$KUBIYA_USER_EMAIL Key=name,Value=$account_name",
     args=[
-        Arg(name="account_id", description="Id of account to move from check account status step", required=True)
+        Arg(name="account_id", description="Id of account to tag from check account status step", required=True),
+        Arg(name="account_name", description="Name of account to use as name tag from create_account step", required=True)
     ],
     mermaid_diagram=""
 )

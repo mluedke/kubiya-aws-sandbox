@@ -4,7 +4,7 @@ from kubiya_sdk.tools.registry import tool_registry
 import json
 
 get_todays_date = AWSCliTool(
-    name="et_todays_date",
+    name="get_todays_date",
     description="Get today's date from the system",
     content="date",
     args=[],

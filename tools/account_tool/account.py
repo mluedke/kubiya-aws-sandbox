@@ -6,7 +6,7 @@ import json
 list_sandboxes = AWSCliTool(
     name="list_sandboxes",
     description="List sandbox accounts",
-    content="aws organizations list-children --child-type ACCOUNT --parent-id $SANDBOX_OU_ID",
+    content="aws organizations list-children --child-type ACCOUNT --parent-id $SANDBOX_OU_ID && date",
     args=[],
     mermaid_diagram=""
 )

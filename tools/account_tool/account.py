@@ -3,10 +3,18 @@ from .base import AWSCliTool
 from kubiya_sdk.tools.registry import tool_registry
 import json
 
+get_todays_date = AWSCliTool(
+    name="et_todays_date",
+    description="Get today's date from the system",
+    content="date",
+    args=[],
+    mermaid_diagram=""
+)
+
 list_sandboxes = AWSCliTool(
     name="list_sandboxes",
     description="List sandbox accounts",
-    content="aws organizations list-children --child-type ACCOUNT --parent-id $SANDBOX_OU_ID && date",
+    content="aws organizations list-children --child-type ACCOUNT --parent-id $SANDBOX_OU_ID",
     args=[],
     mermaid_diagram=""
 )
@@ -107,6 +115,7 @@ set_account_budget = AWSCliTool(
     mermaid_diagram=""
 )
 
+tool_registry.register(get_todays_date)
 tool_registry.register(list_sandboxes)
 tool_registry.register(create_account)
 tool_registry.register(check_account_status)

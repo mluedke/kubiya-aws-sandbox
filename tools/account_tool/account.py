@@ -1,6 +1,7 @@
 from kubiya_sdk.tools import Arg
 from .base import AWSCliTool
 from kubiya_sdk.tools.registry import tool_registry
+import json
 
 list_sandboxes = AWSCliTool(
     name="list_sandboxes",
@@ -73,33 +74,34 @@ get_account_tags = AWSCliTool(
 set_account_budget = AWSCliTool(
     name="set_account_budget",
     description="Set budget for the given account.",
-    content="""aws budgets create-budget --account-id $account_id --budget
-        '{
+    content="aws budgets create-budget --account-id {account_id} --budget '{json_data}'".format(
+        account_id="{account_id}",
+        json_data=json.dumps({
             "BudgetName": "Daily-Spending-Limit",
             "BudgetLimit": {
-                "Amount": "$daily_limit",
+                "Amount": "{daily_limit}",
                 "Unit": "USD"
             },
             "TimeUnit": "DAILY",
             "BudgetType": "COST",
             "CostFilters": {},
             "CostTypes": {
-                "IncludeCredit": false,
-                "IncludeDiscount": true,
-                "IncludeOtherSubscription": true,
-                "IncludeRecurring": true,
-                "IncludeRefund": false,
-                "IncludeSubscription": true,
-                "IncludeSupport": true,
-                "IncludeTax": true,
-                "IncludeUpfront": true,
-                "UseAmortized": false,
-                "UseBlended": false
+                "IncludeCredit": False,
+                "IncludeDiscount": True,
+                "IncludeOtherSubscription": True,
+                "IncludeRecurring": True,
+                "IncludeRefund": False,
+                "IncludeSubscription": True,
+                "IncludeSupport": True,
+                "IncludeTax": True,
+                "IncludeUpfront": True,
+                "UseAmortized": False,
+                "UseBlended": False
             }
-        }'
-    """,
+        })
+    ),
     args=[
-        Arg(name="account_id", description="Id of AWS account to set budget on", required=True),
+        Arg(name="account_id", description="ID of AWS account to set budget on", required=True),
         Arg(name="daily_limit", description="Amount in USD to set as daily spending limit", required=True)
     ],
     mermaid_diagram=""

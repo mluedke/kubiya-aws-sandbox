@@ -70,6 +70,41 @@ get_account_tags = AWSCliTool(
     mermaid_diagram=""
 )
 
+set_account_budget = AWSCliTool(
+    name="set_account_budget",
+    description="Set budget for the given account.",
+    content="""aws budgets create-budget --account-id $account_id --budget
+        '{
+            "BudgetName": "Daily-Spending-Limit",
+            "BudgetLimit": {
+                "Amount": "$daily_limit",
+                "Unit": "USD"
+            },
+            "TimeUnit": "DAILY",
+            "BudgetType": "COST",
+            "CostFilters": {},
+            "CostTypes": {
+                "IncludeCredit": false,
+                "IncludeDiscount": true,
+                "IncludeOtherSubscription": true,
+                "IncludeRecurring": true,
+                "IncludeRefund": false,
+                "IncludeSubscription": true,
+                "IncludeSupport": true,
+                "IncludeTax": true,
+                "IncludeUpfront": true,
+                "UseAmortized": false,
+                "UseBlended": false
+            }
+        }'
+    """,
+    args=[
+        Arg(name="account_id", description="Id of AWS account to set budget on", required=True),
+        Arg(name="daily_limit", description="Amount in USD to set as daily spending limit", required=True)
+    ],
+    mermaid_diagram=""
+)
+
 tool_registry.register(list_sandboxes)
 tool_registry.register(create_account)
 tool_registry.register(check_account_status)
@@ -77,3 +112,4 @@ tool_registry.register(get_org_root_id)
 tool_registry.register(move_account_to_sandbox_ou)
 tool_registry.register(tag_new_sandbox_account)
 tool_registry.register(get_account_tags)
+tool_registry.register(set_account_budget)
